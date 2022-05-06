@@ -51,7 +51,5 @@ aws elbv2 create-listener \
     --port 80 \
     --default-actions Type=forward,TargetGroupArn=$TGARN
     
-export ELBKBC=$(aws elbv2 create-load-balancer --name kubecost-network-load-balancer --type network --subnets $SUBNETS | 
+export ELBKBC_URL=$(aws elbv2 create-load-balancer --name kubecost-network-load-balancer --type network --subnets $SUBNETS | 
         jq '.LoadBalancers[]  | .DNSName' | sed 's/\"//g')
-        
-echo "export ELBKBC_URL=${ELBKBC}" | tee -a ~/.bash_profile

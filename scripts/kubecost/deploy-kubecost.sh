@@ -19,7 +19,8 @@ curl -sSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 
 
 echo "Install Helm Kubecost"
 cd scripts/kubecost
-source ./deploy-nlb.sh
+. ./deploy-nlb.sh
+
 kubectl create namespace kubecost
 helm repo add kubecost https://kubecost.github.io/cost-analyzer/
 helm install kubecost kubecost/cost-analyzer --namespace kubecost --set kubecostToken="$KUBECOSTTOKEN"
